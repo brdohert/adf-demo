@@ -1,0 +1,62 @@
+{
+	"name": "pl_National_Immunization_Survey_Adult_COVID",
+	"properties": {
+		"description": "National Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+		"activities": [
+			{
+				"name": "http_ National_Immunization_Survey_Adult_COVID",
+				"description": "National_Immunization_Survey_Adult_COVID\nNational Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "National_Immunization_Survey_Adult_COVID",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "adls_National_Immunization_Survey_Adult_COVID",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "data.gov"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-10T22:03:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

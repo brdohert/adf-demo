@@ -1,0 +1,22 @@
+{
+	"name": "cdc_Viral_hemorrhagic_fevers",
+	"properties": {
+		"description": "NNDSS - TABLE 1OO. Viral hemorrhagic fevers, Machupo virus to Viral hemorrhagic fevers, Sabia virus - CKAN (data.gov)",
+		"linkedServiceName": {
+			"referenceName": "Viral_hemorrhagic_fevers",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "cdc"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

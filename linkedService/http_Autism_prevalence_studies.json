@@ -1,0 +1,14 @@
+{
+	"name": "http_Autism_prevalence_studies",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "autism prevalence studies - CKAN (data.gov)",
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://data.cdc.gov/api/views/9mw4-6adp/rows.json?accessType=DOWNLOAD",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

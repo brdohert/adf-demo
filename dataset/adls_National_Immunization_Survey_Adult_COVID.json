@@ -1,0 +1,20 @@
+{
+	"name": "adls_National_Immunization_Survey_Adult_COVID",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_National_Immunization_Survey_Adult_COVID",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "National_Immunization_Survey_Adult_COVID.json",
+				"folderPath": "prod/bronze"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

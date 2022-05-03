@@ -1,0 +1,22 @@
+{
+	"name": "National_Immunization_Survey_Adult_COVID",
+	"properties": {
+		"description": "National Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+		"linkedServiceName": {
+			"referenceName": "National_Immunization_Survey_Adult_COVID",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "cdc"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

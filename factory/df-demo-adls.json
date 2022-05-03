@@ -1,0 +1,9 @@
+{
+	"name": "df-demo-adls",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "717838ce-a7e0-435c-9bf1-f1a404e41d1e",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}

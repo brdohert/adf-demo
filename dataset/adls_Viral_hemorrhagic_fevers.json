@@ -1,0 +1,20 @@
+{
+	"name": "adls_Viral_hemorrhagic_fevers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_Viral_hemorrhagic_fevers",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Viral_hemorrhagic_fevers.json",
+				"folderPath": "prod/bronze"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

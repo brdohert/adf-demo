@@ -1,0 +1,21 @@
+{
+	"name": "pl_Autism_prevalence_studies",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "http_Autism_prevalence_studies",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "cdc"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
