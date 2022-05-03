@@ -1,0 +1,687 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "df-demo-adls"
+		},
+		"Road_Weather_Demonstration_Data_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Road_Weather_Demonstration_Data'"
+		},
+		"adls_Autism_prevalence_studies_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'adls_Autism_prevalence_studies'"
+		},
+		"adls_National_Immunization_Survey_Adult_COVID_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'adls_National_Immunization_Survey_Adult_COVID'"
+		},
+		"adls_Viral_hemorrhagic_fevers_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'adls_Viral_hemorrhagic_fevers'"
+		},
+		"Dot_Road_Weather_Demonstration_Data_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://data.transportation.gov/api/views/jc5e-psbx/rows.json?accessType=DOWNLOAD"
+		},
+		"National_Immunization_Survey_Adult_COVID_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://data.cdc.gov/api/views/akkj-j5ru/rows.json?accessType=DOWNLOAD"
+		},
+		"Road_Weather_Demonstration_Data_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"Viral_hemorrhagic_fevers_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://data.cdc.gov/api/views/5nfe-wsjn/rows.json?accessType=DOWNLOAD"
+		},
+		"adls_Autism_prevalence_studies_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"adls_National_Immunization_Survey_Adult_COVID_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"adls_Viral_hemorrhagic_fevers_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"http_Autism_prevalence_studies_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://data.cdc.gov/api/views/9mw4-6adp/rows.json?accessType=DOWNLOAD"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Dot_Road_Weather_Demonstration_Data')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Road Weather Demonstration Data - CKAN",
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('Dot_Road_Weather_Demonstration_Data_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/National_Immunization_Survey_Adult_COVID')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "National Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('National_Immunization_Survey_Adult_COVID_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Road_Weather_Demonstration_Data')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Road Weather Demonstration Data - CKAN",
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Road_Weather_Demonstration_Data_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Road_Weather_Demonstration_Data_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Viral_hemorrhagic_fevers')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "NNDSS - TABLE 1OO. Viral hemorrhagic fevers, Machupo virus to Viral hemorrhagic fevers, Sabia virus - CKAN (data.gov)",
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('Viral_hemorrhagic_fevers_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_Autism_prevalence_studies')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Autism_prevalence_studies\nautism prevalence studies - CKAN (data.gov)\n",
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('adls_Autism_prevalence_studies_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('adls_Autism_prevalence_studies_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_National_Immunization_Survey_Adult_COVID')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "National_Immunization_Survey_Adult_COVID\nNational Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('adls_National_Immunization_Survey_Adult_COVID_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('adls_National_Immunization_Survey_Adult_COVID_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_Viral_hemorrhagic_fevers')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('adls_Viral_hemorrhagic_fevers_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('adls_Viral_hemorrhagic_fevers_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/http_Autism_prevalence_studies')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "autism prevalence studies - CKAN (data.gov)",
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('http_Autism_prevalence_studies_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Dot_Road_Weather_Demonstration_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Road Weather Demonstration Data - CKAN",
+				"linkedServiceName": {
+					"referenceName": "Dot_Road_Weather_Demonstration_Data",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "DOT"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Dot_Road_Weather_Demonstration_Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/National_Immunization_Survey_Adult_COVID')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "National Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+				"linkedServiceName": {
+					"referenceName": "National_Immunization_Survey_Adult_COVID",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "cdc"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/National_Immunization_Survey_Adult_COVID')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_Autism_prevalence_studies')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_Autism_prevalence_studies",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Autism_prevalence_studies.json",
+						"folderPath": "prod/bronze"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adls_Autism_prevalence_studies')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_Dot_Road_Weather_Demonstration_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Road_Weather_Demonstration_Data",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Road_Weather_Demonstration_Data.json",
+						"folderPath": "prod/bronze"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Road_Weather_Demonstration_Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_National_Immunization_Survey_Adult_COVID')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_National_Immunization_Survey_Adult_COVID",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "National_Immunization_Survey_Adult_COVID.json",
+						"folderPath": "prod/bronze"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adls_National_Immunization_Survey_Adult_COVID')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adls_Viral_hemorrhagic_fevers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_Viral_hemorrhagic_fevers",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Viral_hemorrhagic_fevers.json",
+						"folderPath": "prod/bronze"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adls_Viral_hemorrhagic_fevers')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/cdc_Viral_hemorrhagic_fevers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "NNDSS - TABLE 1OO. Viral hemorrhagic fevers, Machupo virus to Viral hemorrhagic fevers, Sabia virus - CKAN (data.gov)",
+				"linkedServiceName": {
+					"referenceName": "Viral_hemorrhagic_fevers",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "cdc"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Viral_hemorrhagic_fevers')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_Autism_prevalence_studies')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "http_Autism_prevalence_studies",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "cdc"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/http_Autism_prevalence_studies')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_Autism_prevalence_studies')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "copy Autism_prevalence_studies",
+						"description": "autism prevalence studies - CKAN (data.gov)",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "pl_Autism_prevalence_studies",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "adls_Autism_prevalence_studies",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "data.gov"
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-03-10T21:57:58Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/pl_Autism_prevalence_studies')]",
+				"[concat(variables('factoryId'), '/datasets/adls_Autism_prevalence_studies')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_National_Immunization_Survey_Adult_COVID')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "National Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+				"activities": [
+					{
+						"name": "http_ National_Immunization_Survey_Adult_COVID",
+						"description": "National_Immunization_Survey_Adult_COVID\nNational Immunization Survey Adult COVID Module (NIS-ACM): Trends in Vaccination Status and Intent - CKAN (data.gov)",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "National_Immunization_Survey_Adult_COVID",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "adls_National_Immunization_Survey_Adult_COVID",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "data.gov"
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-03-10T22:03:46Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/National_Immunization_Survey_Adult_COVID')]",
+				"[concat(variables('factoryId'), '/datasets/adls_National_Immunization_Survey_Adult_COVID')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_Road_Weather_Demonstration_Data')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "http_Road_Weather_Demonstration_Data",
+						"description": "Road Weather Demonstration Data - CKAN",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Dot_Road_Weather_Demonstration_Data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "adls_Dot_Road_Weather_Demonstration_Data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "data.gov"
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-03-10T21:58:19Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Dot_Road_Weather_Demonstration_Data')]",
+				"[concat(variables('factoryId'), '/datasets/adls_Dot_Road_Weather_Demonstration_Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_Viral_hemorrhagic_fevers')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "http_Viral_hemorrhagic_fevers",
+						"description": "NNDSS - TABLE 1OO. Viral hemorrhagic fevers, Machupo virus to Viral hemorrhagic fevers, Sabia virus - CKAN (data.gov)",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "cdc_Viral_hemorrhagic_fevers",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "adls_Viral_hemorrhagic_fevers",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "data.gov"
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-03-10T21:46:13Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/cdc_Viral_hemorrhagic_fevers')]",
+				"[concat(variables('factoryId'), '/datasets/adls_Viral_hemorrhagic_fevers')]"
+			]
+		}
+	]
+}

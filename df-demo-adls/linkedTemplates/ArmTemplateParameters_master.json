@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "df-demo-adls"
+		},
+		"Road_Weather_Demonstration_Data_accountKey": {
+			"value": ""
+		},
+		"adls_Autism_prevalence_studies_accountKey": {
+			"value": ""
+		},
+		"adls_National_Immunization_Survey_Adult_COVID_accountKey": {
+			"value": ""
+		},
+		"adls_Viral_hemorrhagic_fevers_accountKey": {
+			"value": ""
+		},
+		"Dot_Road_Weather_Demonstration_Data_properties_typeProperties_url": {
+			"value": "https://data.transportation.gov/api/views/jc5e-psbx/rows.json?accessType=DOWNLOAD"
+		},
+		"National_Immunization_Survey_Adult_COVID_properties_typeProperties_url": {
+			"value": "https://data.cdc.gov/api/views/akkj-j5ru/rows.json?accessType=DOWNLOAD"
+		},
+		"Road_Weather_Demonstration_Data_properties_typeProperties_url": {
+			"value": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"Viral_hemorrhagic_fevers_properties_typeProperties_url": {
+			"value": "https://data.cdc.gov/api/views/5nfe-wsjn/rows.json?accessType=DOWNLOAD"
+		},
+		"adls_Autism_prevalence_studies_properties_typeProperties_url": {
+			"value": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"adls_National_Immunization_Survey_Adult_COVID_properties_typeProperties_url": {
+			"value": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"adls_Viral_hemorrhagic_fevers_properties_typeProperties_url": {
+			"value": "https://brdohertdemoadlsg2.dfs.core.windows.net"
+		},
+		"http_Autism_prevalence_studies_properties_typeProperties_url": {
+			"value": "https://data.cdc.gov/api/views/9mw4-6adp/rows.json?accessType=DOWNLOAD"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
