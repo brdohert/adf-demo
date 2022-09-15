@@ -1,0 +1,25 @@
+{
+	"name": "TimedSchedule",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_Road_Weather_Demonstration_Data_copy1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-09-15T16:48:00Z",
+				"endTime": "2022-09-30T00:46:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
