@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "RoadWeatherData.json",
+				"fileName": "RoadWeatherData2.json",
 				"container": "dev"
 			}
 		},
