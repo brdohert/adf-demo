@@ -1,14 +1,14 @@
 {
 	"name": "Dot_Road_Weather_Demonstration_Data",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "Road Weather Demonstration Data - CKAN",
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
 			"url": "https://data.transportation.gov/api/views/jc5e-psbx/rows.json?accessType=DOWNLOAD",
-			"enableServerCertificateValidation": false,
+			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
